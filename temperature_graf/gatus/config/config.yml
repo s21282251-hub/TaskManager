@@ -1,0 +1,11 @@
+metrics: true
+endpoints:
+  - name: temperachure_graf
+    url: http://temperachure_graf:8000
+    interval: 30s
+    conditions:
+      - "[STATUS] == 200"
+      - "[RESPONSE_TIME] < 300"
+    alerts:
+      - type: slack
+        enabled: false

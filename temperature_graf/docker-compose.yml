@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  temperachure_graf:
+    build: .
+    env_file:
+      - ./.env
+    ports:
+      - "8000:8000"
+    # networks:
+    #   - app-network
+
+  gatus:
+    image: twinproduction/gatus:latest
+    ports:
+      - 8080:8080
+    volumes:
+      - ./gatus/config:/config
+
+# networks:
+#   app-network:
+#     driver: bridge

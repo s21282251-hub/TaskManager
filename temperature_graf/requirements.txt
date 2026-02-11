@@ -1,0 +1,9 @@
+FastAPI
+pandas
+beautifulsoup4
+requests
+lxml
+html5lib
+python-dotenv
+uvicorn
+Jinja2
