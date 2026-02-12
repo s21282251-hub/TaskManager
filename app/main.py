@@ -9,16 +9,22 @@ app = FastAPI()
 
 templates = Jinja2Templates(directory="app/templates")
 
+def get_weather_data(api_key, city="auto:ip"):
+    params = {
+        "key": api_key,
+        "q": city
+    }
+    response = requests.get(
+        "http://api.weatherapi.com/v1/current.json",
+        params=params
+    )
+    return response.json()
+
 @app.get('/')
 async def temperature_graph(request: Request):
-    data = {}
+    
     try:
-        params = {
-            "key": APP_ID,
-            "q": "auto:ip"
-        }
-        res = requests.get("http://api.weatherapi.com/v1/current.json", params=params)
-        data = res.json()
+        data = get_weather_data(APP_ID)
         print(data)
 
     except Exception as e:
